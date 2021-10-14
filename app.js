@@ -25,3 +25,8 @@ function satartTimer() {
         timer = true
     }
 }
+
+function stopTimer() {
+    timer = false
+    document.getElementById("timer_timer").innerHTML = "05:00"
+}
