@@ -11,17 +11,24 @@
 <body>
     <div class="timer_menu">
         <img class="menu" src="img/menu-mit-drei-zeilen.png">
+        <!--<img class="menu cancle" src="img/menu-mit-drei-zeilen.png">-->
     </div>
     <div class="timer_img">
         <img class="timer_image" src="img/hourglass-gd648330ac_1280.png">
     </div>
     <div class="timer_timer" id="timer_timer">
-        05: 00
+        <input type="number" max="99" min="00" value="00" id="minutes">
+        <span>:</span>
+        <input type="number" max="99" min="00" value="00" id="seconds">
     </div>
     <div class="timer_button">
-        <button onclick="satartTimer()">START</button>
-        <button onclick="stopTimer()" style="margin-left: 20px; padding: 10px 35px 10px 35px;">Stop</button>
+        <button id="start">START</button>
+        <button id="stop" style="margin-left: 20px; padding: 10px 35px 10px 35px;">Stop</button>
     </div>
+    <div class="reset_button">
+        <button id="reset">RESET</button>
+    </div>
+
 
     <script src="app.js"></script>
 </body>

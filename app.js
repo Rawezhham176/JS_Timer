@@ -1,32 +1,41 @@
-var timer = false
+const start = document.getElementById("start")
+const stop = document.getElementById("stop")
+const reset = document.getElementById("reset")
 
-function satartTimer() {
-    if (!timer) {
-        let currentTime = new Date().getTime()
-        let startTime = 1000 * 60 * 5
-        let endTime = currentTime + startTime
+var min = document.getElementById("minutes")
+var sec = document.getElementById("seconds")
 
-        setInterval(function () {
-            let timeLeft = endTime - new Date().getTime()
+var startTime = null
 
-            if (timeLeft > 0) {
-                let minutes = timeLeft / (1000 * 60)
-                minutes = Math.floor(minutes)
-                let seconds = (timeLeft / 1000) % 60
-                seconds = Math.round(seconds)
-                seconds = ("0" + seconds).slice(-2)
-                let text = '0' + minutes + ":" + seconds
-                document.getElementById("timer_timer").innerHTML = text
-            } else {
-                document.getElementById("timer_timer").innerHTML = "00:00"
-            }
-
+start.addEventListener('click', function () {
+    function startInterval() {
+        startTime = setInterval(function () {
+            timer()
         }, 1000)
-        timer = true
     }
-}
+    startInterval()
+})
 
-function stopTimer() {
-    timer = false
-    document.getElementById("timer_timer").innerHTML = "05:00"
+stop.addEventListener('click', function () {
+    clearInterval(startTime)
+})
+
+reset.addEventListener('click', function () {
+    min.value = 0
+    sec.value = 0
+    clearInterval(startTime)
+})
+
+
+function timer() {
+    if (min.value == 0 && sec.value == 0) {
+        min.value = 0
+        sec.value = 0
+    } else if (sec.value != 0) {
+        sec.value--
+    } else if (min.value != 0 && sec.value == 0) {
+        sec.value = 59
+        min.value--
+    }
+    return
 }
